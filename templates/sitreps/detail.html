@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{% block content %}
+<div style="margin: 0 0 ">
+<h2>SITREP</h2>
+<a href="{% url 'sitreps:update' object.id %}"><button class="btn btn-primary">Edit</button></a>
+<div style="margin-top:1em">
+<p><b>{{ object.title }}</b></p>
+{{object.text | safe}}
+</div>
+</div>
+<div style="padding-top:2em;font-size:.75em">
+<hr>
+Last Modified {{object.modified | date:"Y-m-d H:i:s e"}}
+</div>
+{% endblock %}

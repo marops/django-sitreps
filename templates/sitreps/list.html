@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% load tz %}
+{% block content %}
+
+<style>
+    .table { max-width:800px }
+</style>
+
+<h2>SITREPS</h2>
+{% get_current_timezone as TIME_ZONE %}
+Timezone: {{TIME_ZONE}}
+<hr>
+<table class="table table-sm table-striped table-bordered">
+{% for p in sitreps %}
+    <tr>
+        <td><a href="/sitreps/{{p.pk}}/">{{ p }}({{p.pk}})</a></td>
+        <td>{{ p.modified }}({{TIME_ZONE}})</td>
+        <td>{{ p.modified|date:"Y-m-d H:i:s e" }}</td>
+    </tr>
+{% empty %}
+    <li>No SITREPS yet.</li>
+{% endfor %}
+</table>
+
+<div>
+    <a href="/sitreps/new/" class="btn btn-primary" role="button">Add New SITREP</a>
+
+</div>
+
+{% endblock %}
